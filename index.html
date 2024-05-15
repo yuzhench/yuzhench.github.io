@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav id="desktop-nav">
-      <div class="logo">John Doe</div>
+      <div class="logo">Yuzhen Chen</div>
       <div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
@@ -21,7 +21,7 @@
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">John Doe</div>
+      <div class="logo">Yuzhen Chen</div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -38,16 +38,16 @@
     </nav>
     <section id="profile">
       <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="John Doe profile picture" />
+        <img src="./source/per_img.png" alt="Yuzhen Chen profile picture" />
       </div>
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">John Doe</h1>
-        <p class="section__text__p2">Frontend Developer</p>
+        <h1 class="title">Yuzhen Chen</h1>
+        <p class="section__text__p2">Computer Engineering Major</p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
+            onclick="window.open('./assets/resume-example.pdf')" ##where define the link of the resume(repalce it later)
           >
             Download CV
           </button>
@@ -77,7 +77,7 @@
       <div class="section-container">
         <div class="section__pic-container">
           <img
-            src="./assets/about-pic.png"
+            src="./source/spot.png"
             alt="Profile picture"
             class="about-pic"
           />
@@ -91,7 +91,13 @@
                 class="icon"
               />
               <h3>Experience</h3>
-              <p>2+ years <br />Frontend Development</p>
+              <!-- <p>2+ years <br />Frontend Development</p> -->
+              <p>2 years Research Assistant in <a href = "http://www.roahmlab.com/" > Roahm Lab</a></p>
+              <p>1 year Research Assistant in <a href="https://lsa.umich.edu/urop"> UROP Program</a> </p>
+              <p>1 summer Research Assistant in <a href="https://umdearborn.edu/academics/undergraduate-studies/undergraduate-research/sure-program"> SURE Program</a></p>
+              <p>1 semester Departmental Ambassador in <a href="https://adue.engin.umich.edu/engr110-design-engin-exp/"> ENGR 110</a></p>
+              <p>2 semsesters Learning Assistant in <a href="https://open.umich.edu/find/open-educational-resources/physics/physics-140-general-physics-1"> Physics 140X</a></p>
+              <p>1 semester Basic Courses Tutor in <a href="https://ecas.engin.umich.edu/about-us/">ECAS</a></p>
             </div>
             <div class="details-container">
               <img
@@ -100,7 +106,10 @@
                 class="icon"
               />
               <h3>Education</h3>
-              <p>B.Sc. Bachelors Degree<br />M.Sc. Masters Degree</p>
+              <!-- <p>B.Sc. Bachelors Degree<br />M.Sc. Masters Degree</p> -->
+              <p>B.Se. Computer Engineering<br /> GPA: 3.9</p>
+              <p><a href="https://honors.umich.edu/awards.php">JAMES B. ANGELL SCHOLAR</a> (100ST & 101ST)</p>
+
             </div>
           </div>
           <div class="text-container">
@@ -125,81 +134,233 @@
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Experience</h1>
+
+
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
+            <h2 class="experience-sub-title">Research Experience</h2>
+            <h3 class="experience-sub-sub-title"> <span class="highlight">Robotics (2022-2024)</span></h3>
             <div class="article-container">
               <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>SASS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Material UI</h3>
-                  <p>Intermediate</p>
-                </div>
+                <ul class="glow-list">
+                  <li>
+                    <h3>Research Assistant in <a href = "http://www.roahmlab.com/" target = "_blank" style="color:darkslateblue"> Roahm Lab</a></h3>
+                      <ul class="nested-list">
+                        <li><b>Project Group: <a href="https://parkerewen.com/" style= "color:darkslateblue">Parker Ewen</a>  group </b> </li>
+                          <ul class="nested-list">
+                            <li>Research Robot Platform: Spot (Boston Dynamics)</li>
+                            <li>Research Area: Robot Perception</li>
+                            <li>Publication: <a href="https://roahmlab.github.io/multimodal_mapping//" style="color:dodgerblue">RSS paper</a> </li>
+                            <li>Publication: <a href="/source/IROS_2023___Workshop_Talk_Proposal.pdf" target ="_blank" style="color: dodgerblue;">IROS Best Poster</a></li>
+                          </ul>
+                          <br> 
+                        <li><b>Project Group: Yizhou Chen Group</b>
+                          <ul class="nested-list">
+                            <li>Research Robot Platform: Kinova Arm</li>
+                            <li>Research Area: Safety Control</li>
+                            <li>Paper in review: <a href="/source/CQE_paper.pdf" style="color:dodgerblue">DEFORM</a></li>
+                          </ul>
+                        </li>
+                        <br>
+                        <li><b>Project Group: Zachary Brei Group</b>
+                          <ul class="nested-list">
+                            <li>Research Robot Platform: Kinova Arm</li>
+                            <li>Research Area: Safety Control</li>
+                           </ul>
+                        </li>
+                         
+                      </ul>
+                  </li> 
+                  <!-- the first research assistant  -->
+                  <br>
+                  <li>
+                    <h3>Research Assistant in <a href = "https://fieldrobotics.engin.umich.edu/" style="color:darkslateblue"> Field Robotics Group (FRoG)</a></h3>
+                    <ul class="nested-list">
+                      <li><b>Project Group: <a href="https://robotics.umich.edu/profile/anja-sheppard-2/" style= "color:darkslateblue">Anja Sheppard</a>  group </b> </li>
+                        <ul class="nested-list">
+                          <li>Research Area: Robot Perception</li>
+                          <li>Project About: openCDB & VDBfusion</li>
+                        </ul>
+                       
+                    </ul>
+                  </li>
+                </ul>
+                 
+              
               </article>
             </div>
+          
+          <br><br>
+          <!-- start a new research topic -->
+          <h3 class="experience-sub-sub-title"><span class="highlight">Human-Computer Interactive(2024)</span></h3> 
+
+          <div class="article-container">
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>Research Assistant in <a href = "https://theisclab.com/team.html" style="color:darkslateblue"> Interactive Sensing & Computing Lab</a></h3>
+                  <ul class="nested-list">
+                    <li><b>Project Group: <a href="https://scholar.google.com/citations?hl=en&user=zmCbWwsAAAAJ" style= "color:darkslateblue">Yaxuan Li</a>  group </b> </li>
+                      <ul class="nested-list">
+                        <li>Reseach Area: <a href="source/REPORT-FINAL.pdf" style="color:dodgerblue" target="_blank"> gesture-detecting wristband</a></li>
+                        <li>Project About: Ultrasonic Sensor & Machine Learning Algorithms </li>
+                        <li>Future Use: Build In Watch</li>
+                      </ul>
+                      <br> 
+                     
+                  </ul>
+                </li>
+
+              </ul>
+               
+            
+            </article>
           </div>
+          <br>
+
+          <!-- start a new research topic -->
+          <h3 class="experience-sub-sub-title"><span class="highlight">Embedded Systems(2022-2023)</span></h3> 
+          <div class="article-container">
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>Research Assistant in <a href = "https://cee.engin.umich.edu/research/facilities/structural-engineering/" style="color:darkslateblue" target="_blank">Structural Engineering Laboratory</a></h3>
+                  <ul class="nested-list">
+                    <li><b>Project Group: <a href="https://scholar.google.com/citations?hl=en&user=zmCbWwsAAAAJ" style= "color:darkslateblue">Wentao Wang</a>  group </b> </li>
+                      <ul class="nested-list">
+                        <li>Reseach Area: Apply Embeded System in Climate Research</a></li>
+                        <li>Project About: environmental monitoring sensors in urban areas </li>
+                        <li>Future Use: Deployment of inexpensive sensors across urban areas using drones</li>
+                        <li>Poster: <a href="source/urop-presentation.pdf" style="color: dodgerblue" target="_blank">urop_poster</a> </li>
+                      </ul>
+                      <br> 
+                     
+                  </ul>
+                </li>
+
+              </ul>
+               
+            
+            </article>
+          </div>
+
+          <!-- start a new research topic -->
+          <h3 class="experience-sub-sub-title"><span class="highlight">Biomedical Engineering(2023)</span></h3> 
+          <div class="article-container">
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>Research Assistant in <a href = "https://umdearborn.edu/academics/undergraduate-studies/undergraduate-research/sure-program" style="color:darkslateblue" target="_blank">SURE Program</a></h3>
+                  <ul class="nested-list">
+                    <li><b>Project Group: <a href="https://www.umtri.umich.edu/people/hu-jingwen/" style= "color:darkslateblue">Jingwen Hu</a>  group </b> </li>
+                      <ul class="nested-list">
+                        <li>Reseach Area: Application of virtual reality technology in liver surgery</a></li>
+                        <li>Project About: 
+                          <ul class="nested-list">
+                              <li>Generating 3D human tissue models from CT images </li>
+                              <li>Designing the user interface for VR glasses</li>
+                          </ul>
+                        <li>uture Use:
+                          <ul class="nested-list">
+                            <li>Liver surgery visual assistance</li>
+                            <li>Human physiology education</li>
+                          </ul>
+                        </li>
+
+                      </ul>
+                      <br> 
+                     
+                  </ul>
+                </li>
+
+              </ul>
+               
+            
+            </article>
+          </div>
+
+          </div>
+
+
           <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
+            <h2 class="experience-sub-title">Teaching Experience</h2>
+
+            <h3 class="experience-sub-sub-title"><span class="highlight">Guiding students in their academic majors and career planning</span></h3>
+            <div class="article-container">
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>ENGR 110 Departmental Ambassador<a href="https://adue.engin.umich.edu/engr110-design-engin-exp/" style="color: darkslateblue;" target="_blank">(Website)</a></h3>
+                  <ul class="nested-list">
+                    <li>Job Responsibilities:</li>
+                    <ul class="nested-list">
+                      <li>Lead class discussions and facilitate small group sessions (20 students), providing insights into College of Engineering majors for informed decision-making</li>
+                      <li>Review and provide constructive feedback on students' work to support academic growth</li>
+                    </ul>
+                    <br>
+                    <li>Achievements:</li>
+                    <ul class ="nested-list">
+                      <li>think from the perspective of students and create a positive discussion atmosphere</li>
+                    </ul>
+                    <br>
+                    <li>Time: 2024 Fall Semester</li>
+                  </ul>
+                </li>
+              </ul>
+
+            </article>
+            <br><br>
+            <h3 class="experience-sub-sub-title"><span class="highlight">Guidance on foundational courses</span></h3>
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>PHY140 X Learnign Assistant<a href="https://open.umich.edu/find/open-educational-resources/physics/physics-140-general-physics-1" style="color: darkslateblue;" target="_blank">(Website)</a></h3>
+                  <ul class="nested-list">
+                    <li>Job Responsibilities:</li>
+                    <ul class="nested-list">
+                      <li>Applied effective and inclusive teaching strategies to mentor students in fundamental physics theory</li>
+                      <li>Provided constructive feedback to optimize the course curriculum based on students' assignments and exams</li>
+                    </ul>
+                    <br>
+                    <li>Achievements:</li>
+                    <ul class="nested-list">
+                      <li>realized that discussions and exchanges can deepen understanding of knowledge, and I will apply this discussion-based learning format to my own research group in the future</li>
+                    </ul>
+                    <br>
+                    <li>Time: 2022 Fall & 2023 Winter & 2023 Spring Semesters</li>
+                  </ul>
+                </li>
+              </ul> 
+            </article>
+            
+            <br><br>
+             
+            <article>
+              <ul class="glow-list">
+                <li>
+                  <h3>ECAS Tutor<a href="https://ecas.engin.umich.edu/about-us/" style="color: darkslateblue;" target="_blank">(Website)</a></h3>
+                  <ul class="nested-list">
+                    <li>Job Responsibilities:</li>
+                    <ul class="nested-list">
+                      <li>Conducted individualized tutoring sessions, assisting over 50 students in developing critical learning skills</li>
+                    </ul>
+                    <li>Achievements:</li>
+                    <ul class="nested-list">
+                      <li>Systematically outline the learning methods for different subjects, and continuously improve through student feedback</li>
+                    </ul>
+                    <li>Time: 2022 Fall Semester</li>
+                  </ul>
+                </li>
+              </ul> 
+            </article>
+              
+            </div>
+          </div>
+
+
+          <div class="details-container">
+            <h2 class="experience-sub-title">Tecknical Skills</h2>
             <div class="article-container">
               <article>
                 <img
@@ -247,6 +408,10 @@
               </article>
             </div>
           </div>
+
+
+
+
         </div>
       </div>
       <img
@@ -352,7 +517,7 @@
             alt="Email icon"
             class="icon contact-icon email-icon"
           />
-          <p><a href="mailto:examplemail@gmail.com">Example@gmail.com</a></p>
+          <p><a href="mailto:examplemail@gmail.com">yuzhench@umich.edu</a></p>
         </div>
         <div class="contact-info-container">
           <img
@@ -360,7 +525,7 @@
             alt="LinkedIn icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+          <p><a href="https://www.linkedin.com">www.linkedin.com/in/yuzhench</a></p>
         </div>
       </div>
     </section>
