@@ -346,8 +346,10 @@ section {
   /* text-align: initial; */
   /* flex-wrap: wrap; */
   /* flex-direction: row; */
-  flex-direction: column;
+  flex-direction: column; 
   gap: 2.5rem;
+  position: relative;
+  align-items: center;
   /* justify-content: space-around; */
 }
 
@@ -377,12 +379,13 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 90%;
+  width: 80%;
   height: 90%;
+  object-position: center;
 }
 
 .project-title {
-  margin: 1rem;
+  margin: 0.4rem;
   color: black;
 }
 
@@ -451,4 +454,10 @@ footer p {
   background-color: rgb(235, 235, 196); /* Set the background color */
   border-radius: 10px;
   padding: 5px;
+}
+
+ 
+.stretched-image {
+  width: 600px;
+  height: 600px;
 }
