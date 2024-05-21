@@ -151,7 +151,7 @@ a:hover {
 section {
   padding-top: 4vh;
   /* height: 96vh; */
-  height: 200vh;  /*adjust the height of each session*/
+  /*height: 200vh;  /*adjust the height of each session*/
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
