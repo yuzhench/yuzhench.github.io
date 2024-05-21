@@ -151,7 +151,7 @@ a:hover {
 section {
   padding-top: 4vh;
   /* height: 96vh; */
-  height: 150vh;  /*adjust the height of each session*/
+  height: 200vh;  /*adjust the height of each session*/
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
@@ -216,19 +216,29 @@ section {
 
 /* BUTTONS */
 
-.btn-container {
+/* .btn-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
-}
+} */
 
-.btn {
+/* .btn {
   font-weight: 1000;
   transition: all 300ms ease;
   padding: 1.5rem;
   width: 10rem;
   border-radius: 2rem;
+} */
+
+.btn {
+  flex: 1 1 auto; /* Allow the button to grow and shrink */
+  font-weight: 1000;
+  transition: all 300ms ease;
+  padding: 0.5rem;
+  min-width: 3rem; /* Set a minimum width to avoid the buttons becoming too small */
+  border-radius: 1rem;
 }
+
 
 .btn-color-1,
 .btn-color-2 {
@@ -273,6 +283,14 @@ section {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
+.about-containers-p{
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+}
+
 
 .about-details-container {
   justify-content: center;
@@ -324,7 +342,7 @@ section {
 .experience-sub-title {
   color: rgb(85, 85, 85);
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -379,8 +397,8 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 80%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   object-position: center;
 }
 
@@ -457,7 +475,41 @@ footer p {
 }
 
  
-.stretched-image {
-  width: 600px;
-  height: 600px;
+/* .stretched-image {
+  width: 90%;
+  height: 90%;
+} */
+
+
+.image-container-part {
+  height: 70%; /* Image takes 70% */
+  display: flex;
+  align-items: center; /* Center the image vertically if needed */
+  justify-content: center; /* Center the image horizontally if needed */
+}
+
+.description-container-part{
+  height: 20%; /* Description takes 30% */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the text vertically */
+  padding-left: 20px; /* Add some padding if needed */
+}
+
+.button-container-part{
+  height: 10%;
+  display: flex;
+  /* justify-content: center; */
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+}
+
+
+.button-container-part button{
+  margin: 5px;
+}
+
+
+.project-sub-title{
+  font-size: 0.8rem;
 }
