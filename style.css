@@ -234,9 +234,10 @@ section {
   flex: 1 1 auto; /* Allow the button to grow and shrink */
   font-weight: 1000;
   transition: all 300ms ease;
-  padding: 0.5rem;
+  padding: 1.5rem;
   min-width: 3rem; /* Set a minimum width to avoid the buttons becoming too small */
   border-radius: 1rem;
+  font-size: 1.2rem;
 }
 
 
@@ -283,6 +284,12 @@ section {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
+/* .about-containers-skills {
+  gap: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+} */
 
 .about-containers-p{
   gap: 2rem;
@@ -333,6 +340,12 @@ section {
   margin: auto 0;
 }
 
+/* PUBLICATION SECTION */
+
+#publication {
+  position: relative;
+}
+
 /* EXPERIENCE SECTION */
 
 #experience {
@@ -342,7 +355,7 @@ section {
 .experience-sub-title {
   color: rgb(85, 85, 85);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -367,7 +380,7 @@ section {
   flex-direction: column; 
   gap: 2.5rem;
   position: relative;
-  align-items: center;
+  align-items:left;
   /* justify-content: space-around; */
 }
 
@@ -405,6 +418,7 @@ article .icon {
 .project-title {
   margin: 0.4rem;
   color: black;
+  font-size: 2.0rem;
 }
 
 .project-btn {
@@ -486,6 +500,7 @@ footer p {
   display: flex;
   align-items: center; /* Center the image vertically if needed */
   justify-content: center; /* Center the image horizontally if needed */
+  /* padding: 1.5rem; */
 }
 
 .description-container-part{
@@ -511,5 +526,34 @@ footer p {
 
 
 .project-sub-title{
-  font-size: 0.8rem;
+  font-size: 1.5rem;
 }
+
+.publication-sub-title{
+  font-size: 2.5rem;
+}
+
+.category {
+  flex: 1 1 50px; /* Adjust this value to control the minimum width of categories */
+  margin-bottom: 20px;
+}
+
+.category article{
+  display: flex;
+  flex-direction: row;
+  gap:40px;
+  margin-bottom: 50px;
+  width: 50%;
+  /* flex-basis: 25%; */
+  
+}
+
+ 
+
+.skill-info {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word; /* Ensure long words break to the next line */
+}
+
+
