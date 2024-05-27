@@ -234,10 +234,10 @@ section {
   flex: 1 1 auto; /* Allow the button to grow and shrink */
   font-weight: 1000;
   transition: all 300ms ease;
-  padding: 1.5rem;
+  padding: 1.0rem;
   min-width: 3rem; /* Set a minimum width to avoid the buttons becoming too small */
   border-radius: 1rem;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
 }
 
 
@@ -280,9 +280,9 @@ section {
 }
 
 .about-containers {
-  gap: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 /* .about-containers-skills {
@@ -320,7 +320,7 @@ section {
 }
 
 .details-container {
-  padding: 1.5rem;
+  padding: 1rem;
   flex: 1;
   background: white;
   border-radius: 2rem;
@@ -418,7 +418,7 @@ article .icon {
 .project-title {
   margin: 0.4rem;
   color: black;
-  font-size: 2.0rem;
+  font-size: 1.2rem;
 }
 
 .project-btn {
@@ -482,6 +482,12 @@ footer p {
   padding-left: 40px; /* Adjust this value to increase or decrease indentation */
 }
 
+.nested-list li {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .highlight {
   background-color: rgb(235, 235, 196); /* Set the background color */
   border-radius: 10px;
@@ -526,7 +532,7 @@ footer p {
 
 
 .project-sub-title{
-  font-size: 1.5rem;
+  font-size: 1.0rem;
 }
 
 .publication-sub-title{
@@ -556,4 +562,44 @@ footer p {
   word-wrap: break-word; /* Ensure long words break to the next line */
 }
 
+.skill-info h3{
+  font-size: medium;
+}
+
+.skill-info p{
+  font-size: small;
+}
+
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(
+      0,
+      0,
+      0,
+      0.4
+  );
+  display: none;
+}
+.popup-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888888;
+  width: 30%;
+  font-weight: bolder;
+  text-align: left;
+}
+.popup-content button {
+  display: block;
+  margin: 0 auto;
+}
+.show {
+  display: block;
+}
 
