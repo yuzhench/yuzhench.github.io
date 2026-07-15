@@ -55,5 +55,35 @@
   render();
 })();
 
+// ---------------- top nav: scroll-spy + shadow ----------------
+(function () {
+  const nav = document.getElementById('topnav');
+  if (!nav) return;
+  const links = Array.from(nav.querySelectorAll('.nav-links a[data-nav]'));
+  const sections = links
+    .map((a) => document.getElementById(a.getAttribute('data-nav')))
+    .filter(Boolean);
+
+  const setActive = (id) =>
+    links.forEach((a) => a.classList.toggle('active', a.getAttribute('data-nav') === id));
+
+  let ticking = false;
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 6);
+    const line = nav.offsetHeight + 30;
+    let current = sections.length ? sections[0].id : null;
+    for (const s of sections) {
+      if (s.getBoundingClientRect().top <= line) current = s.id;
+    }
+    if (current) setActive(current);
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+})();
+
 // ---------------- footer year ----------------
 document.getElementById('year').textContent = new Date().getFullYear();
