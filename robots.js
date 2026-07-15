@@ -80,15 +80,15 @@
 
   // ---------- species (each linked to a paper it appears in) ----------
   const SPECIES = [
-    { name: 'Panda',    roams: false, anchor: 0.10, build: pandaArm, paper: 'pub-deer',
+    { name: 'Panda',    roams: true, speed: 0.42, build: pandaArm, paper: 'pub-deer',
       title: 'DEER' },
-    { name: 'Kinova',   roams: false, anchor: 0.66, build: kinovaArm, paper: 'pub-deft',
+    { name: 'Kinova',   roams: true, speed: 0.42, build: kinovaArm, paper: 'pub-deft',
       title: 'DEFT' },
-    { name: 'Go2',      roams: true,  build: () => quadruped('#3b4658', '#20252f', '#5db0e6', 'go2'), paper: 'pub-slimvdb',
+    { name: 'Go2',      roams: true, speed: 0.8, build: () => quadruped('#3b4658', '#20252f', '#5db0e6', 'go2'), paper: 'pub-slimvdb',
       title: 'SLIM-VDB' },
-    { name: 'Spot',     roams: true,  build: () => quadruped('#f3c21e', '#2a2f3a', '#2a2f3a', 'spot'), paper: 'pub-feelit',
+    { name: 'Spot',     roams: true, speed: 0.8, build: () => quadruped('#f3c21e', '#2a2f3a', '#2a2f3a', 'spot'), paper: 'pub-feelit',
       title: 'Feel It to Believe It' },
-    { name: 'Humanoid', roams: true,  build: humanoid, paper: 'pub-gem4d',
+    { name: 'Humanoid', roams: true, speed: 0.8, build: humanoid, paper: 'pub-gem4d',
       title: 'GEM-4D' },
   ];
 
@@ -123,7 +123,7 @@
     };
     el.addEventListener('pointerdown', (e) => { e.preventDefault(); if (!b.paused && b.mode === 'free') ask(b); });
     bots.push(b);
-    if (!b.roams) b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+    b.el.style.transform = `translate(${b.x}px, ${b.y}px) scaleX(${b.face})`;
   }
 
   // ---------- gentle custom page scroll (slower than native smooth) ----------
@@ -309,7 +309,7 @@
         const fleeing = now < b.flee;
         if (!fleeing) {
           b.vx += rand(-0.05, 0.05); b.vy += rand(-0.04, 0.04);
-          const sp = Math.hypot(b.vx, b.vy), max = 0.8;
+          const sp = Math.hypot(b.vx, b.vy), max = b.sp.speed || 0.8;
           if (sp > max) { b.vx = (b.vx / sp) * max; b.vy = (b.vy / sp) * max; }
           if (sp < 0.18) { b.vx += rand(-0.22, 0.22); b.vy += rand(-0.16, 0.16); }
         }
