@@ -544,23 +544,31 @@ html[data-theme="dark"] .nav-cv:hover { color: #10151b !important; }
 
 .robot {
   position: absolute;
-  width: 46px; height: 50px;
+  width: 52px; height: 56px;
   pointer-events: auto;
   cursor: pointer;
   will-change: transform;
-  filter: drop-shadow(0 5px 6px rgba(4, 51, 97, 0.18));
+  filter: drop-shadow(0 5px 6px rgba(4, 51, 97, 0.20));
   -webkit-tap-highlight-color: transparent;
 }
 .robot svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.robot .r-body   { fill: var(--site-navy); transition: fill .25s ease; }
-.robot .r-screen { fill: #eaf3fb; }
-.robot .r-eye    { fill: #10314f; transition: transform .12s ease; transform-origin: center; }
-.robot.blink .r-eye { transform: scaleY(0.12); }
-.robot .r-cheek  { fill: #ff8fa3; opacity: 0; transition: opacity .2s ease; }
-.robot.shy .r-cheek { opacity: .85; }
-.robot .r-antenna-dot { fill: var(--site-blue); }
-html[data-theme="dark"] .robot .r-screen { fill: #0c1a27; }
-html[data-theme="dark"] .robot .r-eye { fill: #bfe0ff; }
+html[data-theme="dark"] .robot {
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,.55)) drop-shadow(0 0 0.7px rgba(180,214,246,.65));
+}
+
+/* walking legs / swinging arms / idle manipulator sway */
+@keyframes rbt-step     { 0%,100% { transform: rotate(19deg); }  50% { transform: rotate(-19deg); } }
+@keyframes rbt-step-rev { 0%,100% { transform: rotate(-19deg); } 50% { transform: rotate(19deg); } }
+@keyframes rbt-sway     { 0%,100% { transform: rotate(-7deg); }  50% { transform: rotate(7deg); } }
+
+.robot .leg, .robot .swing { transform-box: fill-box; transform-origin: top center; }
+.robot .leg-a, .robot .swing-a { animation: rbt-step     .55s ease-in-out infinite; }
+.robot .leg-b, .robot .swing-b { animation: rbt-step-rev .55s ease-in-out infinite; }
+.robot.running .leg-a, .robot.running .leg-b,
+.robot.running .swing-a, .robot.running .swing-b { animation-duration: .27s; }
+
+.robot .sway { transform-box: fill-box; transform-origin: bottom center; animation: rbt-sway 2.6s ease-in-out infinite; }
+.robot.shy .sway { animation-duration: .5s; }
 
 .robot-bubble {
   position: absolute;
