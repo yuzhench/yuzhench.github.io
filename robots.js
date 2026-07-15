@@ -1,7 +1,8 @@
 /* =====================================================================
    Roaming robots — famous lab robots given a little life.
-   Walkers (Go2, Spot, humanoid) stride around; arms (Panda, Kinova)
-   stay bolted down and sway. They chat, and shy away when clicked.
+   Walkers (Go2, Spot, humanoid) stride around; arms (Panda, Kinova) sway.
+   Click one → it offers to walk you to a paper it worked on; say yes and
+   the page scrolls to that paper and the robot stops. Say no and it shies.
    Strictly confined to #robot-zone, so they never cover the content.
    ===================================================================== */
 (function () {
@@ -16,7 +17,7 @@
   const rand = (a, b) => a + Math.random() * (b - a);
   const pick = (arr) => arr[(Math.random() * arr.length) | 0];
 
-  // ---------- SVG builders (each drawn facing right, feet at the bottom) ----------
+  // ---------- SVG builders (drawn facing right, feet at the bottom) ----------
   function quadruped(body, dark, accent, type) {
     const head = type === 'go2'
       ? `<rect x="40" y="16" width="13" height="11" rx="4" fill="${body}"/>
@@ -37,7 +38,7 @@
   }
 
   function humanoid() {
-    const w = '#eef2f7', d = '#2a2f3a', a = '#3a86c9';
+    const w = '#e9eef4', d = '#2a2f3a', a = '#3a86c9';
     return `<svg viewBox="0 0 56 56" aria-hidden="true">
       <rect class="swing swing-b" x="16" y="19" width="5" height="16" rx="2.5" fill="${w}"/>
       <rect class="swing swing-a" x="35" y="19" width="5" height="16" rx="2.5" fill="${w}"/>
@@ -51,7 +52,7 @@
   }
 
   function pandaArm() {
-    const w = '#eef2f7', d = '#20242e';
+    const w = '#e9eef4', d = '#20242e';
     return `<svg viewBox="0 0 56 56" aria-hidden="true">
       <rect x="19" y="48" width="18" height="6" rx="2" fill="${d}"/>
       <g class="sway">
@@ -64,7 +65,7 @@
   }
 
   function kinovaArm() {
-    const s = '#ccd5e0', d = '#2a2f3a', teal = '#16b0a3';
+    const s = '#c4cedb', d = '#2a2f3a', teal = '#16b0a3';
     return `<svg viewBox="0 0 56 56" aria-hidden="true">
       <rect x="20" y="49" width="16" height="5.5" rx="2.6" fill="${d}"/>
       <g class="sway">
@@ -77,24 +78,24 @@
     </svg>`;
   }
 
-  // ---------- species ----------
+  // ---------- species (each linked to a paper it appears in) ----------
   const SPECIES = [
-    { name: 'Panda',   roams: false, anchor: 0.10, build: pandaArm,
-      lines: ['I stay put 🦾', 'Franka here', 'grip! 🤏', 'so precise'] },
-    { name: 'Kinova',  roams: false, anchor: 0.66, build: kinovaArm,
-      lines: ['7 DoF 💪', 'reach it!', 'Kinova online', 'beep'] },
-    { name: 'Go2',     roams: true,  build: () => quadruped('#3b4658', '#20252f', '#5db0e6', 'go2'),
-      lines: ['woof! 🐕', 'Go2 patrol', 'trot trot', 'sniff sniff'] },
-    { name: 'Spot',    roams: true,  build: () => quadruped('#f3c21e', '#2a2f3a', '#2a2f3a', 'spot'),
-      lines: ['Spot here 🟡', 'good boy', 'clop clop', 'exploring!'] },
-    { name: 'Humanoid',roams: true,  build: humanoid,
-      lines: ['hi human! 👋', 'walking 🚶', 'let’s go 🚀', 'balance ✨'] },
+    { name: 'Panda',    roams: false, anchor: 0.10, build: pandaArm, paper: 'pub-deer',
+      title: 'DEER' },
+    { name: 'Kinova',   roams: false, anchor: 0.66, build: kinovaArm, paper: 'pub-deft',
+      title: 'DEFT' },
+    { name: 'Go2',      roams: true,  build: () => quadruped('#3b4658', '#20252f', '#5db0e6', 'go2'), paper: 'pub-slimvdb',
+      title: 'SLIM-VDB' },
+    { name: 'Spot',     roams: true,  build: () => quadruped('#f3c21e', '#2a2f3a', '#2a2f3a', 'spot'), paper: 'pub-feelit',
+      title: 'Feel It to Believe It' },
+    { name: 'Humanoid', roams: true,  build: humanoid, paper: 'pub-gem4d',
+      title: 'GEM-4D' },
   ];
 
   const CHATTER = ['read GEM-4D? 👀', 'world models 🧠', 'nice paper!', 'touch to believe ✋',
                    'so many DLOs…', 'wanna compute? ✨', 'humans are cool 😌', 'beep boop'];
   const REPLIES = ['😎', '❤️', '👍', 'lol', 'wow!', 'agreed 🤝', 'beep!', '🚀', 'hehe'];
-  const SHY = ['😳', '!', 'eek!', 'bye! 💨', '🙈', 'oh no'];
+  const SHY = ['😳', 'ok, bye! 💨', 'maybe later 🙈', 'no worries 😌'];
 
   let W = zone.clientWidth, Ht = zone.clientHeight;
   const bots = [];
@@ -108,18 +109,22 @@
     const b = {
       el, sp, roams: sp.roams,
       x: sp.roams ? rand(PAD, Math.max(PAD, W - SIZE - PAD)) : (sp.anchor * W),
-      y: sp.roams ? rand(Ht * 0.34, Ht - H - PAD) : (Ht - H - 2),
+      y: sp.roams ? rand(PAD, Ht - H - PAD) : (Ht - H - 2),
       vx: sp.roams ? (rand(-0.5, 0.5) || 0.4) : 0,
       vy: sp.roams ? rand(-0.35, 0.35) : 0,
-      face: 1, flee: 0, bubble: null, bubbleT: 0,
+      face: 1, flee: 0, paused: false, bubble: null, bubbleT: 0,
     };
-    el.addEventListener('pointerdown', (e) => { e.preventDefault(); shy(b); });
+    el.addEventListener('pointerdown', (e) => { e.preventDefault(); if (!b.paused) ask(b); });
     bots.push(b);
     if (!b.roams) b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
   }
 
+  function clearBubble(b) {
+    if (b.bubble) { const x = b.bubble; b.bubble = null; x.classList.remove('show'); setTimeout(() => x.remove(), 200); }
+  }
+
   function say(b, text, life = 2200) {
-    if (b.bubble) b.bubble.remove();
+    clearBubble(b);
     const bub = document.createElement('div');
     bub.className = 'robot-bubble';
     bub.textContent = text;
@@ -131,16 +136,42 @@
 
   function positionBubble(b) {
     if (!b.bubble) return;
-    let bx = Math.max(34, Math.min(W - 34, b.x + SIZE / 2));
+    const bx = Math.max(40, Math.min(W - 40, b.x + SIZE / 2));
     b.bubble.style.left = bx + 'px';
     b.bubble.style.top = (b.y - 4) + 'px';
   }
 
-  function shy(b) {
-    say(b, pick(SHY), 1400);
+  // click → offer to walk you to a paper
+  function ask(b) {
+    clearBubble(b);
+    b.paused = true; b.vx = 0; b.vy = 0; b.el.classList.add('halt');
+    const bub = document.createElement('div');
+    bub.className = 'robot-bubble robot-ask';
+    bub.innerHTML =
+      `<span class="ask-row"><span>See my paper? 📄</span>` +
+      `<span class="ask-btns"><button class="ask-yes" type="button">Yes</button>` +
+      `<button class="ask-no" type="button">No</button></span></span>`;
+    zone.appendChild(bub);
+    b.bubble = bub; b.bubbleT = Infinity;
+    positionBubble(b);
+    requestAnimationFrame(() => bub.classList.add('show'));
+    bub.querySelector('.ask-yes').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); guide(b); });
+    bub.querySelector('.ask-no').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); decline(b); });
+    b._askT = setTimeout(() => { if (b.paused && b.bubble === bub) resume(b); }, 7000);
+  }
+
+  function resume(b) {
+    clearTimeout(b._askT);
+    b.paused = false; b.el.classList.remove('halt');
+    clearBubble(b);
+  }
+
+  function decline(b) {
+    resume(b);
+    say(b, pick(SHY), 1500);
     if (b.roams) {
       const cx = b.x < W / 2 ? W - SIZE - PAD : PAD;
-      const cy = b.y < Ht / 2 ? Ht - H - PAD : Ht * 0.34;
+      const cy = b.y < Ht / 2 ? Ht - H - PAD : PAD;
       const dx = cx - b.x, dy = cy - b.y, d = Math.hypot(dx, dy) || 1;
       b.vx = (dx / d) * 4.4; b.vy = (dy / d) * 4.4;
       b.flee = performance.now() + 950;
@@ -148,30 +179,61 @@
       setTimeout(() => b.el.classList.remove('running'), 1000);
     } else {
       b.el.classList.add('shy');
-      setTimeout(() => b.el.classList.remove('shy'), 1400);
+      setTimeout(() => b.el.classList.remove('shy'), 1500);
     }
+  }
+
+  function guide(b) {
+    clearTimeout(b._askT);
+    b.paused = false; b.el.classList.remove('halt');
+    clearBubble(b);
+    say(b, 'follow me! →', 1700);
+
+    const target = document.getElementById(b.sp.paper);
+    if (target) {
+      // switch the publication filter back to "All" so the paper is visible
+      const allBtn = document.querySelector('[data-topic-filter="all"]');
+      if (allBtn && !allBtn.classList.contains('is-active')) allBtn.click();
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('pub-highlight');
+      void target.offsetWidth;
+      target.classList.add('pub-highlight');
+      setTimeout(() => target.classList.remove('pub-highlight'), 2600);
+    }
+
+    if (b.roams) {
+      // trot eagerly toward the content side, then settle
+      b.vx = 3.4; b.vy = rand(-0.4, 0.4); b.flee = performance.now() + 650;
+      b.el.classList.add('running');
+      setTimeout(() => b.el.classList.remove('running'), 850);
+    } else {
+      b.el.classList.add('reaching');
+      setTimeout(() => b.el.classList.remove('reaching'), 1600);
+    }
+    setTimeout(() => { if (!b.paused) say(b, `“${b.sp.title}” ✨`, 2400); }, 1700);
   }
 
   function scheduleChatter() {
     setTimeout(() => {
-      if (bots.length) {
-        const a = pick(bots);
-        say(a, Math.random() < 0.5 ? pick(a.sp.lines) : pick(CHATTER));
+      const idle = bots.filter((b) => !b.paused);
+      if (idle.length) {
+        const a = pick(idle);
+        say(a, Math.random() < 0.4 ? `I’m ${a.sp.name} 🤖` : pick(CHATTER));
         let near = null, best = 1e9;
-        for (const o of bots) {
+        for (const o of idle) {
           if (o === a) continue;
           const d = Math.hypot(o.x - a.x, o.y - a.y);
           if (d < best) { best = d; near = o; }
         }
-        if (near) setTimeout(() => say(near, pick(REPLIES), 1800), rand(700, 1300));
+        if (near) setTimeout(() => { if (!near.paused) say(near, pick(REPLIES), 1800); }, rand(700, 1300));
       }
       scheduleChatter();
-    }, rand(3600, 6800));
+    }, rand(3800, 7000));
   }
 
   function tick(now) {
     for (const b of bots) {
-      if (b.roams) {
+      if (b.roams && !b.paused) {
         const fleeing = now < b.flee;
         if (!fleeing) {
           b.vx += rand(-0.05, 0.05); b.vy += rand(-0.04, 0.04);
@@ -182,7 +244,7 @@
         b.x += b.vx; b.y += b.vy;
         if (b.x < PAD) { b.x = PAD; b.vx = Math.abs(b.vx); }
         if (b.x > W - SIZE - PAD) { b.x = W - SIZE - PAD; b.vx = -Math.abs(b.vx); }
-        if (b.y < Ht * 0.32) { b.y = Ht * 0.32; b.vy = Math.abs(b.vy); }
+        if (b.y < PAD) { b.y = PAD; b.vy = Math.abs(b.vy); }
         if (b.y > Ht - H - PAD) { b.y = Ht - H - PAD; b.vy = -Math.abs(b.vy); }
         if (b.vx > 0.05) b.face = 1; else if (b.vx < -0.05) b.face = -1;
         b.el.style.transform = `translate(${b.x}px, ${b.y}px) scaleX(${b.face})`;
@@ -199,23 +261,28 @@
     requestAnimationFrame(tick);
   }
 
-  function recalc() {
+  // keep the playground under the citation card and above the page bottom
+  function layoutZone() {
+    const cite = document.querySelector('.scholar-stats');
+    if (cite) {
+      const r = cite.getBoundingClientRect();
+      zone.style.top = Math.max(72, r.bottom + 14) + 'px';
+    }
     W = zone.clientWidth; Ht = zone.clientHeight;
     for (const b of bots) {
-      if (!b.roams) {
-        b.x = b.sp.anchor * W; b.y = Ht - H - 2;
-        b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
-      } else {
-        b.x = Math.min(b.x, Math.max(PAD, W - SIZE - PAD));
-        b.y = Math.min(b.y, Math.max(Ht * 0.32, Ht - H - PAD));
+      if (!b.roams) { b.x = b.sp.anchor * W; b.y = Ht - H - 2; b.el.style.transform = `translate(${b.x}px, ${b.y}px)`; }
+      else {
+        b.x = Math.min(Math.max(b.x, PAD), Math.max(PAD, W - SIZE - PAD));
+        b.y = Math.min(Math.max(b.y, PAD), Math.max(PAD, Ht - H - PAD));
       }
     }
   }
 
   // init
   SPECIES.forEach(makeBot);
+  layoutZone();
   scheduleChatter();
-  setTimeout(() => say(pick(bots.filter((b) => b.roams)) || bots[0], 'hi there! 👋', 2600), 1400);
-  window.addEventListener('resize', recalc, { passive: true });
+  setTimeout(() => { const g = bots.filter((b) => b.roams); say(pick(g) || bots[0], 'click me! 👋', 3000); }, 1400);
+  window.addEventListener('resize', layoutZone, { passive: true });
   requestAnimationFrame(tick);
 })();

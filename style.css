@@ -531,9 +531,9 @@ html[data-theme="dark"] .nav-cv:hover { color: #10151b !important; }
 #robot-zone {
   position: fixed;
   left: max(24px, calc((100vw - 1160px) / 2));
+  top: calc(100vh - 360px);  /* fallback; JS lowers it to just under the citation card */
   bottom: 0;
   width: 300px;
-  height: 340px;
   z-index: 15;
   pointer-events: none;      /* container is click-through; robots opt back in */
   overflow: visible;
@@ -552,8 +552,18 @@ html[data-theme="dark"] .nav-cv:hover { color: #10151b !important; }
   -webkit-tap-highlight-color: transparent;
 }
 .robot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+/* crisp rim so the pale robots separate from the background in both themes */
+.robot {
+  filter:
+    drop-shadow(0 5px 6px rgba(4,51,97,.18))
+    drop-shadow(0.7px 0 0 rgba(28,48,78,.55)) drop-shadow(-0.7px 0 0 rgba(28,48,78,.55))
+    drop-shadow(0 0.7px 0 rgba(28,48,78,.55)) drop-shadow(0 -0.7px 0 rgba(28,48,78,.55));
+}
 html[data-theme="dark"] .robot {
-  filter: drop-shadow(0 3px 5px rgba(0,0,0,.55)) drop-shadow(0 0 0.7px rgba(180,214,246,.65));
+  filter:
+    drop-shadow(0 3px 5px rgba(0,0,0,.5))
+    drop-shadow(0.7px 0 0 rgba(190,220,250,.7)) drop-shadow(-0.7px 0 0 rgba(190,220,250,.7))
+    drop-shadow(0 0.7px 0 rgba(190,220,250,.7)) drop-shadow(0 -0.7px 0 rgba(190,220,250,.7));
 }
 
 /* walking legs / swinging arms / idle manipulator sway */
@@ -596,3 +606,30 @@ html[data-theme="dark"] .robot {
   border-top: 6px solid var(--site-card);
 }
 .robot-bubble.show { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+
+/* --- robot: pause legs while asking, arm reach on guide --- */
+.robot.halt .leg-a, .robot.halt .leg-b,
+.robot.halt .swing-a, .robot.halt .swing-b { animation-play-state: paused; }
+.robot.reaching .sway { animation-duration: .45s; }
+
+/* --- interactive "see my paper?" bubble --- */
+.robot-bubble.robot-ask { pointer-events: auto; }
+.robot-ask .ask-row { display: inline-flex; align-items: center; gap: 6px; }
+.robot-ask .ask-btns { display: inline-flex; gap: 4px; }
+.robot-ask button {
+  font-family: var(--mono-home); font-size: 0.72rem; line-height: 1; cursor: pointer;
+  border: 1px solid var(--site-line); border-radius: 6px; padding: 2px 8px;
+  background: var(--site-soft); color: var(--site-navy);
+}
+.robot-ask .ask-yes { background: var(--site-navy); color: #fff; border-color: transparent; }
+html[data-theme="dark"] .robot-ask .ask-yes { color: #10151b; }
+.robot-ask button:hover { filter: brightness(1.08); }
+
+/* --- paper highlight when a robot walks you to it --- */
+.pub-highlight { border-radius: 12px; animation: pub-flash 2.6s ease; }
+@keyframes pub-flash {
+  0%   { background: transparent; }
+  18%  { background: color-mix(in srgb, var(--site-blue) 18%, transparent); }
+  70%  { background: color-mix(in srgb, var(--site-blue) 13%, transparent); }
+  100% { background: transparent; }
+}
