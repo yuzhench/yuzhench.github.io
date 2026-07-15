@@ -98,7 +98,13 @@
   const SHY = ['😳', 'ok, bye! 💨', 'maybe later 🙈', 'no worries 😌'];
 
   let W = zone.clientWidth, Ht = zone.clientHeight;
+  let scrolling = false;
   const bots = [];
+
+  function anchorX(b) { return b.sp.anchor * W; }
+  function homePos(b) {
+    return b.roams ? { x: b.x, y: b.y } : { x: anchorX(b), y: Ht - H - 2 };
+  }
 
   function makeBot(sp) {
     const el = document.createElement('div');
@@ -107,16 +113,54 @@
     el.innerHTML = sp.build();
     zone.appendChild(el);
     const b = {
-      el, sp, roams: sp.roams,
+      el, sp, roams: sp.roams, mode: 'free',
       x: sp.roams ? rand(PAD, Math.max(PAD, W - SIZE - PAD)) : (sp.anchor * W),
       y: sp.roams ? rand(PAD, Ht - H - PAD) : (Ht - H - 2),
       vx: sp.roams ? (rand(-0.5, 0.5) || 0.4) : 0,
       vy: sp.roams ? rand(-0.35, 0.35) : 0,
       face: 1, flee: 0, paused: false, bubble: null, bubbleT: 0,
+      home: null, bumpStart: 0, travelStart: 0,
     };
-    el.addEventListener('pointerdown', (e) => { e.preventDefault(); if (!b.paused) ask(b); });
+    el.addEventListener('pointerdown', (e) => { e.preventDefault(); if (!b.paused && b.mode === 'free') ask(b); });
     bots.push(b);
     if (!b.roams) b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+  }
+
+  // ---------- gentle custom page scroll (slower than native smooth) ----------
+  function smoothScrollTo(toY, dur) {
+    const startY = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    toY = Math.max(0, Math.min(max, toY));
+    const t0 = performance.now();
+    scrolling = true;
+    const ease = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+    (function step(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      window.scrollTo(0, startY + (toY - startY) * ease(p));
+      if (p < 1) requestAnimationFrame(step); else scrolling = false;
+    })(t0);
+  }
+
+  // where the paper should rest on screen, and where the bot should stand beside it
+  function paperScrollTarget(paperEl) {
+    const r = paperEl.getBoundingClientRect();
+    return window.scrollY + r.top + r.height / 2 - window.innerHeight * 0.70;
+  }
+  function paperBesideLocal(paperEl) {
+    const zr = zone.getBoundingClientRect();
+    const r = paperEl.getBoundingClientRect();
+    return {
+      x: r.left - SIZE - 14 - zr.left,
+      y: r.top + r.height / 2 - H / 2 - zr.top,
+    };
+  }
+  function moveToward(b, tx, ty, sp) {
+    const dx = tx - b.x, dy = ty - b.y, d = Math.hypot(dx, dy);
+    if (d < 1.5) { b.x = tx; b.y = ty; return true; }
+    const st = Math.min(sp, d);
+    b.x += dx / d * st; b.y += dy / d * st;
+    if (dx > 0.4) b.face = 1; else if (dx < -0.4) b.face = -1;
+    return false;
   }
 
   function clearBubble(b) {
@@ -136,7 +180,8 @@
 
   function positionBubble(b) {
     if (!b.bubble) return;
-    const bx = Math.max(40, Math.min(W - 40, b.x + SIZE / 2));
+    const lo = 40, hi = (b.mode === 'free' || b.paused) ? W - 40 : W + 80;
+    const bx = Math.max(lo, Math.min(hi, b.x + SIZE / 2));
     b.bubble.style.left = bx + 'px';
     b.bubble.style.top = (b.y - 4) + 'px';
   }
@@ -187,35 +232,46 @@
     clearTimeout(b._askT);
     b.paused = false; b.el.classList.remove('halt');
     clearBubble(b);
-    say(b, 'follow me! →', 1700);
+    say(b, 'follow me! →', 1600);
 
     const target = document.getElementById(b.sp.paper);
+    if (!target) { resume(b); return; }
+
+    // make sure the paper is visible, then scroll gently to it
+    const allBtn = document.querySelector('[data-topic-filter="all"]');
+    if (allBtn && !allBtn.classList.contains('is-active')) allBtn.click();
+    smoothScrollTo(paperScrollTarget(target), 1600);
+
+    b.home = homePos(b);
+    b.mode = 'travel';
+    b.travelStart = performance.now();
+    if (b.roams) b.el.classList.add('running');
+    else b.el.classList.add('reaching');
+  }
+
+  function bump(b) {
+    b.mode = 'bump';
+    b.bumpStart = performance.now();
+    b.el.classList.remove('running', 'reaching');
+    const target = document.getElementById(b.sp.paper);
     if (target) {
-      // switch the publication filter back to "All" so the paper is visible
-      const allBtn = document.querySelector('[data-topic-filter="all"]');
-      if (allBtn && !allBtn.classList.contains('is-active')) allBtn.click();
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      target.classList.remove('pub-highlight');
-      void target.offsetWidth;
+      target.classList.remove('pub-highlight'); void target.offsetWidth;
       target.classList.add('pub-highlight');
       setTimeout(() => target.classList.remove('pub-highlight'), 2600);
     }
+    say(b, pick(['👉 tada!', '💥', '✨ here!', 'ta-da! 🎉', 'beep 🤖']), 1900);
+  }
 
-    if (b.roams) {
-      // trot eagerly toward the content side, then settle
-      b.vx = 3.4; b.vy = rand(-0.4, 0.4); b.flee = performance.now() + 650;
-      b.el.classList.add('running');
-      setTimeout(() => b.el.classList.remove('running'), 850);
-    } else {
-      b.el.classList.add('reaching');
-      setTimeout(() => b.el.classList.remove('reaching'), 1600);
-    }
-    setTimeout(() => { if (!b.paused) say(b, `“${b.sp.title}” ✨`, 2400); }, 1700);
+  function endGuide(b) {
+    b.mode = 'free';
+    b.el.classList.remove('running', 'reaching');
+    if (b.roams) { b.vx = rand(-0.5, 0.5) || 0.3; b.vy = rand(-0.3, 0.3); }
+    else { b.x = anchorX(b); b.y = Ht - H - 2; b.face = 1; b.el.style.transform = `translate(${b.x}px, ${b.y}px)`; }
   }
 
   function scheduleChatter() {
     setTimeout(() => {
-      const idle = bots.filter((b) => !b.paused);
+      const idle = bots.filter((b) => b.mode === 'free' && !b.paused);
       if (idle.length) {
         const a = pick(idle);
         say(a, Math.random() < 0.4 ? `I’m ${a.sp.name} 🤖` : pick(CHATTER));
@@ -233,7 +289,23 @@
 
   function tick(now) {
     for (const b of bots) {
-      if (b.roams && !b.paused) {
+      if (b.mode === 'travel') {
+        const paper = document.getElementById(b.sp.paper);
+        let reached = true;
+        if (paper) { const t = paperBesideLocal(paper); reached = moveToward(b, t.x, t.y, 1.9); }
+        b.el.style.transform = `translate(${b.x}px, ${b.y}px) scaleX(${b.face})`;
+        if ((reached && !scrolling) || now - b.travelStart > 5500) bump(b);
+      } else if (b.mode === 'bump') {
+        const p = Math.min((now - b.bumpStart) / 480, 1);
+        const off = Math.sin(p * Math.PI) * 7 * b.face;   // a little nudge into the paper
+        b.el.style.transform = `translate(${b.x + off}px, ${b.y}px) scaleX(${b.face})`;
+        if (p >= 1) b.mode = 'return';
+      } else if (b.mode === 'return') {
+        const h = b.home || homePos(b);
+        const reached = moveToward(b, h.x, h.y, 2.4);
+        b.el.style.transform = `translate(${b.x}px, ${b.y}px) scaleX(${b.face})`;
+        if (reached) endGuide(b);
+      } else if (b.roams && !b.paused) {
         const fleeing = now < b.flee;
         if (!fleeing) {
           b.vx += rand(-0.05, 0.05); b.vy += rand(-0.04, 0.04);
