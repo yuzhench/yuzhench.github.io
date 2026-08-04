@@ -633,3 +633,11 @@ html[data-theme="dark"] .robot-ask .ask-yes { color: #10151b; }
   70%  { background: color-mix(in srgb, var(--site-blue) 13%, transparent); }
   100% { background: transparent; }
 }
+
+/* --- blinking eye (roams with the robots; links to the glaucoma paper) --- */
+.robot .eye-blink { transform-box: fill-box; transform-origin: center; animation: rbt-blink 3.6s ease-in-out infinite; }
+@keyframes rbt-blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  92%           { transform: scaleY(0.08); }
+  96%           { transform: scaleY(1); }
+}

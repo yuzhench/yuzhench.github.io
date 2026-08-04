@@ -78,6 +78,18 @@
     </svg>`;
   }
 
+  function eyeIcon() {
+    const w = '#f7fafc', d = '#2a2f3a', iris = '#2f8fd0', pupil = '#10203a';
+    return `<svg viewBox="0 0 56 56" aria-hidden="true">
+      <g class="eye-blink">
+        <ellipse cx="28" cy="30" rx="21" ry="13.5" fill="${w}" stroke="${d}" stroke-width="2"/>
+        <circle cx="28" cy="30" r="9.5" fill="${iris}"/>
+        <circle cx="28" cy="30" r="4.6" fill="${pupil}"/>
+        <circle cx="24.4" cy="26.4" r="2" fill="#ffffff"/>
+      </g>
+    </svg>`;
+  }
+
   // ---------- species (each linked to a paper it appears in) ----------
   const SPECIES = [
     { name: 'Panda',    roams: true, speed: 0.42, build: pandaArm, paper: 'pub-deer',
@@ -90,6 +102,8 @@
       title: 'Feel It to Believe It' },
     { name: 'Humanoid', roams: true, speed: 0.8, build: humanoid, paper: 'pub-gem4d',
       title: 'GEM-4D' },
+    { name: 'Eye',      roams: true, speed: 0.6, build: eyeIcon, paper: 'pub-glaucoma',
+      title: 'Glaucoma Reasoning' },
   ];
 
   const CHATTER = ['read GEM-4D? 👀', 'world models 🧠', 'nice paper!', 'touch to believe ✋',
