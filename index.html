@@ -101,7 +101,7 @@
 
     <p>
       My work builds physically grounded models that robots can actually act on — from real-time differentiable simulators
-      for deformable objects, to perception that fuses vision and touch, to geometry-aware video world models for manipulation.
+      for deformable objects, to perception and action that fuse vision and touch, to geometry-aware video world models for manipulation.
       I'm always open to research discussions and collaboration. Feel free to reach out via
       <a href="mailto:yuzhenchen@g.harvard.edu" class="mail-button"><i class="fas fa-envelope"></i> yuzhenchen@g.harvard.edu</a>.
     </p>
@@ -122,6 +122,8 @@
 
     <!-- TODO: replace the estimated dates below with the real ones -->
     <ul>
+      <li><span class="date-mono">[Oct. 2026]</span> ✋ <a href="https://arxiv.org/abs/2610.28814" target="_blank" rel="noopener">T-WLA</a> is on <strong>arXiv</strong> — a tactile world–language–action model bridging slow vision and fast touch.</li>
+      <li><span class="date-mono">[Oct. 2026]</span> 🎉 <a href="https://arxiv.org/abs/2502.15037" target="_blank" rel="noopener">DEFT</a> is accepted by <strong>IJRR</strong> (The International Journal of Robotics Research).</li>
       <li><span class="date-mono">[Aug. 2026]</span> 🤝 Serving as a <strong>Junior Organizer</strong> of the <a href="https://physworld-org.github.io/physworld.github.io/" target="_blank" rel="noopener">1st Workshop on Physical World AI (PhysWorldAI)</a> at <strong>NeurIPS 2026</strong>.</li>
       <li><span class="date-mono">[Jul. 2026]</span> 📄 <a href="https://www.medrxiv.org/content/10.64898/2026.07.28.26359057v1" target="_blank" rel="noopener">Learning Ophthalmologist Clinical Reasoning for Glaucoma Diagnosis</a> is out on <strong>medRxiv</strong>.</li>
       <li><span class="date-mono">[Jul. 2026]</span> 🎉 <a href="https://openreview.net/forum?id=sghH6peEK8" target="_blank" rel="noopener">Act2See</a> is accepted by the <strong>RSS 2026 FM4RoboPlan</strong> Workshop.</li>
@@ -157,88 +159,36 @@
     <div class="publications" data-publication-list data-filterable="true">
       <ol class="bibliography">
 
-        <li class="publication-item" data-topic="medical" id="pub-glaucoma">
+        <li class="publication-item is-selected" data-topic="robotics" data-selected="true" id="pub-twla">
           <article class="publication-card">
             <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/glaucoma.jpg" alt="Teaser for Glaucoma Reasoning" loading="lazy" decoding="async">
+              <img class="publication-teaser" src="images/pubs/twla.jpg" alt="Teaser for T-WLA" loading="lazy" decoding="async">
             </div>
             <div class="publication-body">
               <h3 class="publication-title">
-                <a href="https://www.medrxiv.org/content/10.64898/2026.07.28.26359057v1" target="_blank" rel="noopener">Learning Ophthalmologist Clinical Reasoning for Glaucoma Diagnosis from Fundus Images</a>
+                <a href="https://arxiv.org/abs/2610.28814" target="_blank" rel="noopener">T-WLA: Bridging Slow Vision and Fast Touch</a>
               </h3>
               <p class="publication-authors">
                 <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a><sup>*</sup>,
-                <strong>Yuzhen Chen</strong><sup>*</sup>, Elif Yildiz<sup>*</sup>, Min Shi, David Dai, Grace Chen, Jiale Zheng, He Wang,
-                <a href="https://fnzhan.com/" target="_blank" rel="noopener">Fangneng Zhan</a>, Chhavi Saini, Lucy Q. Shen, Yike Guo,
-                <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Pu Liang</a>,
-                <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Mengyu Wang</a>
-              </p>
-              <p class="publication-intro">The first clinically annotated fundus reasoning dataset — 1,077 photographs paired with expert-authored six-step diagnostic reports — plus a reasoning-driven vision–language framework that mirrors an ophthalmologist's diagnostic workflow, generating structured clinical reasoning before reaching a glaucoma diagnosis.</p>
-              <div class="publication-meta-row">
-                <span class="publication-venue">medRxiv preprint · 2026</span>
-                <span class="topic-tag">Medical AI</span>
-              </div>
-              <div class="publication-links">
-                <a href="https://www.medrxiv.org/content/10.64898/2026.07.28.26359057v1" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-          </article>
-        </li>
-
-        <li class="publication-item" data-topic="robotics" id="pub-wcm">
-          <article class="publication-card">
-            <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/wcm.jpg" alt="Teaser for WCM" loading="lazy" decoding="async">
-            </div>
-            <div class="publication-body">
-              <h3 class="publication-title">
-                <a href="https://arxiv.org/abs/2607.22999" target="_blank" rel="noopener">WCM: World-Cognition Model for Generalizable Human-Robot Interaction</a>
-              </h3>
-              <p class="publication-authors">
-                <strong>Yuzhen Chen</strong>, <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a>
-              </p>
-              <p class="publication-intro">A human-centered embodied agent built on the SLAK architecture with an asynchronous runtime — it stays transparent about why it acts and can be interactively taught long-horizon tasks, reaching 73.8% success across nine real-world human–robot interaction tasks. Accepted to the RSS 2026 Workshop on Human-centric Mobile Manipulation.</p>
-              <div class="publication-meta-row">
-                <span class="publication-venue">RSS 2026 Workshop on Human-centric Mobile Manipulation · 2026</span>
-                <span class="topic-tag">Robotics</span>
-              </div>
-              <div class="publication-links">
-                <a href="https://arxiv.org/abs/2607.22999" target="_blank" rel="noopener">Paper</a>
-                <a href="https://yuzhench.github.io/WCM_Web/" target="_blank" rel="noopener">Project</a>
-                <a href="files/wcm_rss2026_poster.pdf" target="_blank" rel="noopener">Poster</a>
-              </div>
-            </div>
-          </article>
-        </li>
-
-        <li class="publication-item" data-topic="robotics" id="pub-act2see">
-          <article class="publication-card">
-            <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/act2see.jpg" alt="Teaser for Act2See" loading="lazy" decoding="async">
-            </div>
-            <div class="publication-body">
-              <h3 class="publication-title">
-                <a href="https://openreview.net/forum?id=sghH6peEK8" target="_blank" rel="noopener">Act to See: Structured Articulated Representations through Robot Interaction</a>
-              </h3>
-              <p class="publication-authors">
-                Yifeng Liu<sup>*</sup>, <strong>Yuzhen Chen</strong><sup>*</sup>, Bingyang Wang<sup>*</sup>, Chengqi Li, Jingyi Lu, Han Li,
-                <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a>,
+                <strong>Yuzhen Chen</strong><sup>*</sup>, Hannah Yao<sup>*</sup>, Chonghe Jiang, Rao Fu, Xihang Yu, Wei Dai,
+                Bashar Kabbarah, Haoyu Chen, Ishita Goluguri, Zhiyang Dou, Haonan Chen,
+                <a href="https://fnzhan.com/" target="_blank" rel="noopener">Fangneng Zhan</a>,
                 <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Mengyu Wang</a>,
-                <a href="https://fnzhan.com/" target="_blank" rel="noopener">Fangneng Zhan</a>
+                Wojciech Matusik, Antonio Torralba,
+                <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Pu Liang</a>
               </p>
-              <p class="publication-intro">A robot autonomously inspects an unknown articulated object and builds a structured articulated representation (an explicit URDF) online, frame-by-frame, through active interaction. Accepted to the RSS 2026 FM4RoboPlan Workshop.</p>
+              <p class="publication-intro">A multi-rate world–language–action architecture that bridges low-frequency visual planning and high-frequency tactile correction through shared visual memory: a lightweight tactile editor uses cached task context and recent touch to asynchronously refine unexecuted actions without rerunning vision, with future-image and pressure prediction as training-only supervision. Cuts finger-joint MPJPE by 30% on EgoTouch and 27% on Tachin, and reaches 50% average success on four real-world dexterous manipulation tasks (vs. 23% for T-Rex).</p>
               <div class="publication-meta-row">
-                <span class="publication-venue">RSS 2026 FM4RoboPlan Workshop · 2026</span>
+                <span class="publication-venue">arXiv preprint · 2026</span>
                 <span class="topic-tag">Robotics</span>
               </div>
               <div class="publication-links">
-                <a href="https://openreview.net/forum?id=sghH6peEK8" target="_blank" rel="noopener">Paper</a>
-                <a href="https://lauyihong.github.io/act2see/" target="_blank" rel="noopener">Project</a>
+                <a href="https://arxiv.org/abs/2610.28814" target="_blank" rel="noopener">Paper</a>
+                <a href="https://anonymous-submission-20.github.io/T-WLA.github.io/" target="_blank" rel="noopener">Project</a>
               </div>
             </div>
           </article>
         </li>
-
 
         <li class="publication-item is-selected" data-topic="robotics" data-selected="true" id="pub-gem4d">
           <article class="publication-card">
@@ -259,7 +209,7 @@
                 <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Pu Liang</a>,
                 <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Mengyu Wang</a>
               </p>
-              <p class="publication-intro">Distills dense 4D correspondence supervision from a geometry foundation model into video world models, lifting real-world manipulation success from 61% to 81%. Best Paper Runner-Up (CVPR 2026 WMAS Workshop); Spotlight (CVPR 2026 3D-LLM/VLA Workshop).</p>
+              <p class="publication-intro">A geometry-grounded video world model that distills dense 4D correspondence supervision into a video diffusion transformer during training (no added inference cost), paired with an adaptive inverse-dynamics system that turns generated videos into executable 6-DoF robot trajectories. State-of-the-art 4D scene generation (SSIM 76.2→82.1, FVD 33.2→31.8, Chamfer 0.244→0.200) and real-world manipulation success lifted from 61% to 81%. Best Paper Runner-Up (CVPR 2026 WMAS Workshop); Spotlight (CVPR 2026 3D-LLM/VLA Workshop).</p>
               <div class="publication-meta-row">
                 <span class="publication-venue">ECCV · 2026</span>
                 <span class="topic-tag">Robotics</span>
@@ -273,26 +223,107 @@
           </article>
         </li>
 
-        <li class="publication-item" data-topic="3d-vision" data-selected="false" id="pub-slimvdb">
+        <li class="publication-item" data-topic="robotics" id="pub-wcm">
           <article class="publication-card">
             <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/slimvdb.jpg" alt="Teaser for SLIM-VDB" loading="lazy" decoding="async">
+              <img class="publication-teaser" src="images/pubs/wcm.jpg" alt="Teaser for WCM" loading="lazy" decoding="async">
             </div>
             <div class="publication-body">
               <h3 class="publication-title">
-                <a href="https://arxiv.org/abs/2512.12945" target="_blank" rel="noopener">SLIM-VDB: A Real-Time 3D Probabilistic Semantic Mapping Framework</a>
+                <a href="https://arxiv.org/abs/2607.22999" target="_blank" rel="noopener">WCM: World-Cognition Model for Generalizable Human-Robot Interaction</a>
               </h3>
               <p class="publication-authors">
-                Anja Sheppard, Parker Ewen, Joey Wilson, Advaith V. Sethuraman, Bisola Adewole, Anran Li,
-                <strong>Yuzhen Chen</strong>, et al.
+                <strong>Yuzhen Chen</strong>, <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a>
               </p>
-              <p class="publication-intro">A real-time probabilistic semantic mapping framework built on sparse VDB volumes for large-scale 3D scenes.</p>
+              <p class="publication-intro">A human-centered embodied agent built on the SLAK architecture (Sensing, Logic, Action, Knowledge) with an asynchronous runtime, so reasoning, dialogue, and execution proceed concurrently instead of halting to think between steps. A human-in-the-loop teaching mode and a chain-of-thought distillation pipeline let the agent learn long-horizon tasks from user demonstration and keep improving. 73.8% average success across a nine-task real-world human–robot interaction suite, with task time cut from 103.5 s to 38.5 s against a VLA baseline.</p>
               <div class="publication-meta-row">
-                <span class="publication-venue">IEEE Robotics and Automation Letters · 2026</span>
-                <span class="topic-tag">3D Vision</span>
+                <span class="publication-venue">RSS 2026 Workshop on Human-centric Mobile Manipulation · 2026</span>
+                <span class="topic-tag">Robotics</span>
               </div>
               <div class="publication-links">
-                <a href="https://arxiv.org/abs/2512.12945" target="_blank" rel="noopener">Paper</a>
+                <a href="https://arxiv.org/abs/2607.22999" target="_blank" rel="noopener">Paper</a>
+                <a href="https://yuzhench.github.io/WCM_Web/" target="_blank" rel="noopener">Project</a>
+                <a href="files/wcm_rss2026_poster.pdf" target="_blank" rel="noopener">Poster</a>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <li class="publication-item" data-topic="robotics" id="pub-act2see">
+          <article class="publication-card">
+            <div class="publication-media-wrap">
+              <img class="publication-teaser" src="images/pubs/act2see.jpg" alt="Teaser for Act to See" loading="lazy" decoding="async">
+            </div>
+            <div class="publication-body">
+              <h3 class="publication-title">
+                Act to See: Evolving Articulated Memory for Closed-Loop Vision-Language Planning
+              </h3>
+              <p class="publication-authors">
+                Yifeng Liu<sup>*</sup>, <strong>Yuzhen Chen</strong><sup>*</sup>, Bingyang Wang<sup>*</sup>, Chengqi Li, Jingyi Lu, Han Li, Y. Li, M. Ji,
+                <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a>,
+                <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Mengyu Wang</a>,
+                <a href="https://fnzhan.com/" target="_blank" rel="noopener">Fangneng Zhan</a>
+              </p>
+              <p class="publication-intro">A VLM-guided manipulation framework that keeps an evolving URDF as spatial memory, alongside task progress and interaction outcomes, to decide when to probe, manipulate, or stop. Each interaction estimates joint parameters from observed part motion, fuses pose-aligned RGB-D geometry, and uses the updated model to generate the next linear or revolute trajectory. 100% valid joint reconstruction in 4.23 s and 81.8% drawer / 72.7% door completion in SAPIEN; 5/5 drawer and 4/5 door successes on a UF850 robot in fixed setups.</p>
+              <div class="publication-meta-row">
+                <span class="publication-venue">Manuscript · 2026</span>
+                <span class="topic-tag">Robotics</span>
+              </div>
+              <div class="publication-links">
+                <a href="https://lauyihong.github.io/act2see/" target="_blank" rel="noopener">Project</a>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <li class="publication-item" data-topic="medical" id="pub-glaucoma">
+          <article class="publication-card">
+            <div class="publication-media-wrap">
+              <img class="publication-teaser" src="images/pubs/glaucoma.jpg" alt="Teaser for Glaucoma Reasoning" loading="lazy" decoding="async">
+            </div>
+            <div class="publication-body">
+              <h3 class="publication-title">
+                <a href="https://www.medrxiv.org/content/10.64898/2026.07.28.26359057v1" target="_blank" rel="noopener">Learning Ophthalmologist Clinical Reasoning for Glaucoma Diagnosis from Fundus Images</a>
+              </h3>
+              <p class="publication-authors">
+                <a href="https://kaichen-z.github.io/" target="_blank" rel="noopener">Kaichen Zhou</a><sup>*</sup>,
+                <strong>Yuzhen Chen</strong><sup>*</sup>, Elif Yildiz<sup>*</sup>, Min Shi, David Dai, Grace Chen, Jiale Zheng, He Wang,
+                <a href="https://fnzhan.com/" target="_blank" rel="noopener">Fangneng Zhan</a>, Chhavi Saini, Lucy Q. Shen, Yike Guo,
+                <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Pu Liang</a>,
+                <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Mengyu Wang</a>
+              </p>
+              <p class="publication-intro">A two-stage vision–language reasoning pipeline that couples a frozen RETFound encoder with MedGemma-27B: attention pooling and five task-specific evidence heads, trained with uncertainty-weighted multi-task objectives, extract structured visual evidence that conditions six-step chain-of-thought generation alongside the fundus image. MedGemma-27B is adapted with LoRA and supervised CoT fine-tuning (class-weighted next-token loss on response tokens only), and a five-fold out-of-fold evidence-generation and report-adaptation pipeline reduces training leakage while exposing the reasoning model to realistic prediction errors. 94.7% balanced accuracy, 94.8% precision, and 0.874 BERTScore-F1 against expert reports.</p>
+              <div class="publication-meta-row">
+                <span class="publication-venue">medRxiv preprint · 2026 · under review at a journal</span>
+                <span class="topic-tag">Medical AI</span>
+              </div>
+              <div class="publication-links">
+                <a href="https://www.medrxiv.org/content/10.64898/2026.07.28.26359057v1" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <li class="publication-item is-selected" data-topic="robotics" data-selected="true" id="pub-deft">
+          <article class="publication-card">
+            <div class="publication-media-wrap">
+              <img class="publication-teaser" src="images/pubs/deft.jpg" alt="Teaser for DEFT" loading="lazy" decoding="async">
+            </div>
+            <div class="publication-body">
+              <h3 class="publication-title">
+                <a href="https://arxiv.org/abs/2502.15037" target="_blank" rel="noopener">DEFT: Differentiable Branched Discrete Elastic Rods for Modeling Furcated DLOs in Real-Time</a>
+              </h3>
+              <p class="publication-authors">
+                Yizhou Chen, Felicia Sang, Shicheng Peng, Xiaoyue Wu, Yeheng Zong, <strong>Yuzhen Chen</strong>, Anran Li, Bohao Zhang,
+                <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Ram Vasudevan</a>
+              </p>
+              <p class="publication-intro">Extends differentiable discrete elastic rods to branched topologies, enabling real-time modeling of furcated deformable linear objects.</p>
+              <div class="publication-meta-row">
+                <span class="publication-venue">The International Journal of Robotics Research (IJRR) · 2026 · accepted</span>
+                <span class="topic-tag">Robotics</span>
+              </div>
+              <div class="publication-links">
+                <a href="https://arxiv.org/abs/2502.15037" target="_blank" rel="noopener">Paper</a>
               </div>
             </div>
           </article>
@@ -312,36 +343,11 @@
               </p>
               <p class="publication-intro">A dataset and benchmark pairing 18 indoor objects with 14 materials, for inferring physical material properties from camera images.</p>
               <div class="publication-meta-row">
-                <span class="publication-venue">arXiv preprint · 2025</span>
+                <span class="publication-venue">arXiv preprint · 2025 · under review</span>
                 <span class="topic-tag">3D Vision</span>
               </div>
               <div class="publication-links">
                 <a href="https://arxiv.org/abs/2505.13201" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-          </article>
-        </li>
-
-        <li class="publication-item is-selected" data-topic="robotics" data-selected="true" id="pub-deft">
-          <article class="publication-card">
-            <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/deft.jpg" alt="Teaser for DEFT" loading="lazy" decoding="async">
-            </div>
-            <div class="publication-body">
-              <h3 class="publication-title">
-                <a href="https://arxiv.org/abs/2502.15037" target="_blank" rel="noopener">DEFT: Differentiable Branched Discrete Elastic Rods for Modeling Furcated DLOs in Real-Time</a>
-              </h3>
-              <p class="publication-authors">
-                Yizhou Chen, Xiaoyue Wu, Yeheng Zong, <strong>Yuzhen Chen</strong>, Anran Li, Bohao Zhang,
-                <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Ram Vasudevan</a>
-              </p>
-              <p class="publication-intro">Extends differentiable discrete elastic rods to branched topologies, enabling real-time modeling of furcated deformable linear objects.</p>
-              <div class="publication-meta-row">
-                <span class="publication-venue">arXiv preprint · 2025</span>
-                <span class="topic-tag">Robotics</span>
-              </div>
-              <div class="publication-links">
-                <a href="https://arxiv.org/abs/2502.15037" target="_blank" rel="noopener">Paper</a>
               </div>
             </div>
           </article>
@@ -372,6 +378,31 @@
           </article>
         </li>
 
+        <li class="publication-item" data-topic="3d-vision" data-selected="false" id="pub-bayes">
+          <article class="publication-card">
+            <div class="publication-media-wrap">
+              <img class="publication-teaser" src="images/pubs/bayes.jpg" alt="Teaser for Multi-Modal Semantic Perception" loading="lazy" decoding="async">
+            </div>
+            <div class="publication-body">
+              <h3 class="publication-title">
+                <a href="https://ippc-iros23.github.io/papers/ewen.pdf" target="_blank" rel="noopener">Multi-Modal Semantic Perception Using Bayesian Inference</a>
+              </h3>
+              <p class="publication-authors">
+                Parker Ewen, Gitesh Gunjal, Hao Chen, Anran Li, <strong>Yuzhen Chen</strong>,
+                <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Ram Vasudevan</a>
+              </p>
+              <p class="publication-intro">Bayesian multi-modal fusion for semantic perception in robot manipulation. Best Poster Award, IROS 2023 IPPC Workshop.</p>
+              <div class="publication-meta-row">
+                <span class="publication-venue">IROS 2023 Workshop on Integrated Perception, Planning, and Control (IPPC) · 2023</span>
+                <span class="topic-tag">3D Vision</span>
+              </div>
+              <div class="publication-links">
+                <a href="https://ippc-iros23.github.io/papers/ewen.pdf" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+          </article>
+        </li>
+
         <li class="publication-item" data-topic="3d-vision" data-selected="false" id="pub-feelit">
           <article class="publication-card">
             <div class="publication-media-wrap">
@@ -397,26 +428,28 @@
           </article>
         </li>
 
-        <li class="publication-item" data-topic="3d-vision" data-selected="false" id="pub-bayes">
+        <li class="publication-item" data-topic="3d-vision" data-selected="false" id="pub-slimvdb">
           <article class="publication-card">
             <div class="publication-media-wrap">
-              <img class="publication-teaser" src="images/pubs/bayes.jpg" alt="Teaser for Multi-Modal Semantic Perception" loading="lazy" decoding="async">
+              <img class="publication-teaser" src="images/pubs/slimvdb.jpg" alt="Teaser for SLIM-VDB" loading="lazy" decoding="async">
             </div>
             <div class="publication-body">
               <h3 class="publication-title">
-                <a href="https://ippc-iros23.github.io/papers/ewen.pdf" target="_blank" rel="noopener">Multi-Modal Semantic Perception Using Bayesian Inference</a>
+                <a href="https://arxiv.org/abs/2512.12945" target="_blank" rel="noopener">SLIM-VDB: A Real-Time 3D Probabilistic Semantic Mapping Framework</a>
               </h3>
               <p class="publication-authors">
-                Parker Ewen, Gitesh Gunjal, Hao Chen, Anran Li, <strong>Yuzhen Chen</strong>,
-                <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Ram Vasudevan</a>
+                Anja Sheppard, Parker Ewen, Joey Wilson, Advaith V. Sethuraman, Bisola Adewole, Anran Li,
+                <strong>Yuzhen Chen</strong>,
+                <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Ram Vasudevan</a>,
+                <a href="https://robotics.umich.edu/profile/katherine-skinner/" target="_blank" rel="noopener">Katherine A. Skinner</a>
               </p>
-              <p class="publication-intro">Bayesian multi-modal fusion for semantic perception in robot manipulation. Best Poster, IROS 2023 Workshop.</p>
+              <p class="publication-intro">A real-time probabilistic semantic mapping framework built on sparse VDB volumes for large-scale 3D scenes.</p>
               <div class="publication-meta-row">
-                <span class="publication-venue">IROS Workshop on Integrated Perception, Planning, and Control · 2023</span>
+                <span class="publication-venue">IEEE Robotics and Automation Letters · 2026</span>
                 <span class="topic-tag">3D Vision</span>
               </div>
               <div class="publication-links">
-                <a href="https://ippc-iros23.github.io/papers/ewen.pdf" target="_blank" rel="noopener">Paper</a>
+                <a href="https://arxiv.org/abs/2512.12945" target="_blank" rel="noopener">Paper</a>
               </div>
             </div>
           </article>
@@ -461,7 +494,7 @@
           <p class="experience-title"><strong>Harvard AI and Robotics Lab</strong></p>
           <p class="experience-meta">Sept. 2025 – Present</p>
           <p class="experience-role">Research Assistant · advised by <a href="https://wang.hms.harvard.edu/team/dr-wang/" target="_blank" rel="noopener">Prof. Mengyu Wang</a></p>
-          <p class="experience-detail">Geometry-enhanced video world models for robot manipulation (GEM-4D); VLM-guided active URDF reconstruction (Act2See); interpretable medical VLMs.</p>
+          <p class="experience-detail">Tactile world–language–action models (T-WLA); geometry-enhanced video world models for robot manipulation (GEM-4D); evolving articulated memory for VLM-guided manipulation (Act to See); world-cognition model for human–robot interaction (WCM, with Dr. Kaichen Zhou); ophthalmologist-style clinical reasoning with retinal foundation models and medical VLMs (glaucoma diagnosis).</p>
         </div>
       </div>
 
@@ -471,7 +504,7 @@
           <p class="experience-title"><strong>Multisensory Intelligence Lab</strong>, MIT Media Lab</p>
           <p class="experience-meta">Sept. 2025 – Present</p>
           <p class="experience-role">Research Assistant · advised by <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Prof. Paul Pu Liang</a></p>
-          <p class="experience-detail">Geometry-enhanced video world models for robot manipulation (GEM-4D).</p>
+          <p class="experience-detail">Tactile world–language–action models (T-WLA, with Prof. Antonio Torralba and Prof. Wojciech Matusik); geometry-enhanced video world models for robot manipulation (GEM-4D); ongoing spatially calibrated visuotactile data collection for dexterous manipulation.</p>
         </div>
       </div>
 
@@ -481,7 +514,7 @@
           <p class="experience-title"><strong>ROAHM Lab</strong></p>
           <p class="experience-meta">Apr. 2023 – May 2025</p>
           <p class="experience-role">Research Assistant · advised by <a href="https://me.engin.umich.edu/people/faculty/ram-vasudevan/" target="_blank" rel="noopener">Prof. Ram Vasudevan</a></p>
-          <p class="experience-detail">Real-time differentiable modeling of deformable linear objects (DEER); multi-modal Bayesian semantic perception; conformalized safe motion planning (CROWS); material-property learning from images (MatPredict, with Prof. Arpan Kusari).</p>
+          <p class="experience-detail">Real-time differentiable modeling of deformable linear objects (DEER, DEFT); multi-modal Bayesian semantic perception; conformalized safe motion planning (CROWS); material-property learning from images (MatPredict, with Prof. Arpan Kusari).</p>
         </div>
       </div>
     </div>
@@ -493,7 +526,7 @@
       <li><span class="date-mono">[2026]</span> 🎓 OMPP Summer Research Fellowship, Harvard University.</li>
       <li><span class="date-mono">[2026]</span> 🏆 Best Paper Award, Runner-Up — CVPR 2026 WMAS Workshop.</li>
       <li><span class="date-mono">[2026]</span> ✨ Spotlight — CVPR 2026 3D-LLM/VLA Workshop.</li>
-      <li><span class="date-mono">[2023]</span> 🥇 Best Poster Award — IROS 2023.</li>
+      <li><span class="date-mono">[2023]</span> 🥇 Best Poster Award — IROS 2023 IPPC Workshop (Integrated Perception, Planning, and Control).</li>
       <li><span class="date-mono">[2023–24]</span> 🎖️ James B. Angell Scholar, University of Michigan.</li>
       <li><span class="date-mono">[2022–25]</span> 📜 Dean's List, University of Michigan.</li>
     </ul>
@@ -502,6 +535,7 @@
     <h2 id="services">Services &amp; Teaching</h2>
 
     <ul>
+      <li><span class="date-mono">[2026]</span> Junior Organizer, <a href="https://physworld-org.github.io/physworld.github.io/" target="_blank" rel="noopener">PhysWorldAI: 1st Workshop on Physical World AI</a>, NeurIPS 2026.</li>
       <li><span class="date-mono">[2026–]</span> Robotics Community Event Organizer, MIT CHIEF.</li>
       <li><span class="date-mono">[2022–25]</span> Teaching Assistant, EECS 442 (Computer Vision) &amp; Physics 140X, University of Michigan.</li>
       <li><span class="date-mono">[2023–24]</span> Departmental Ambassador, ENGR 110 &amp; UMich Robotics Department.</li>
@@ -509,7 +543,7 @@
     </ul>
 
     <footer class="site-footer">
-      <p>© <span id="year"></span> Yuzhen Chen · Last updated July 2026</p>
+      <p>© <span id="year"></span> Yuzhen Chen · Last updated October 2026</p>
     </footer>
 
   </div>
