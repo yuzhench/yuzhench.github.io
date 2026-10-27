@@ -90,6 +90,32 @@
     </svg>`;
   }
 
+  // five-finger dexterous hand (tactile pads on the fingertips) — fingers curl as it roams
+  function dexHand() {
+    const w = '#e9eef4', d = '#2a2f3a', pad = '#ef5da8';
+    const finger = (cls, x, h, wd = 5) =>
+      `<g class="finger ${cls}">
+         <rect x="${x}" y="${28 - h}" width="${wd}" height="${h + 2}" rx="${wd / 2}" fill="${w}"/>
+         <rect x="${x + 0.9}" y="${28 - h + 1.1}" width="${wd - 1.8}" height="${wd - 1.2}" rx="1.4" fill="${pad}" opacity=".9"/>
+       </g>`;
+    return `<svg viewBox="0 0 56 56" aria-hidden="true">
+      <rect x="22" y="43" width="12" height="13" rx="3.5" fill="${d}"/>
+      ${finger('finger-a', 13.5, 14)}
+      ${finger('finger-b', 19.5, 18)}
+      ${finger('finger-c', 25.5, 17)}
+      ${finger('finger-d', 31.5, 13.5)}
+      <rect x="12.5" y="25" width="25" height="21" rx="7" fill="${w}"/>
+      <g class="thumb">
+        <rect x="35.5" y="29" width="5.4" height="15" rx="2.7" fill="${w}"/>
+        <rect x="36.5" y="30" width="3.4" height="3.6" rx="1.4" fill="${pad}" opacity=".9"/>
+      </g>
+      <g fill="${d}" opacity=".32">
+        <circle cx="19" cy="33" r="1.1"/><circle cx="24" cy="33" r="1.1"/><circle cx="29" cy="33" r="1.1"/>
+        <circle cx="19" cy="38" r="1.1"/><circle cx="24" cy="38" r="1.1"/><circle cx="29" cy="38" r="1.1"/>
+      </g>
+    </svg>`;
+  }
+
   // ---------- species (each linked to a paper it appears in) ----------
   const SPECIES = [
     { name: 'Panda',    roams: true, speed: 0.42, build: pandaArm, paper: 'pub-deer',
@@ -104,10 +130,12 @@
       title: 'GEM-4D' },
     { name: 'Eye',      roams: true, speed: 0.6, build: eyeIcon, paper: 'pub-glaucoma',
       title: 'Glaucoma Reasoning' },
+    { name: 'DexHand',  roams: true, speed: 0.55, build: dexHand, paper: 'pub-twla',
+      title: 'T-WLA' },
   ];
 
   const CHATTER = ['read GEM-4D? 👀', 'world models 🧠', 'nice paper!', 'touch to believe ✋',
-                   'so many DLOs…', 'wanna compute? ✨', 'humans are cool 😌', 'beep boop'];
+                   'so many DLOs…', 'slow vision, fast touch 🖐', 'wanna compute? ✨', 'humans are cool 😌', 'beep boop'];
   const REPLIES = ['😎', '❤️', '👍', 'lol', 'wow!', 'agreed 🤝', 'beep!', '🚀', 'hehe'];
   const SHY = ['😳', 'ok, bye! 💨', 'maybe later 🙈', 'no worries 😌'];
 

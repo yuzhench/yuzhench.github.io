@@ -634,6 +634,17 @@ html[data-theme="dark"] .robot-ask .ask-yes { color: #10151b; }
   100% { background: transparent; }
 }
 
+/* --- dexterous hand (roams with the robots; links to T-WLA) — fingers curl in a ripple --- */
+.robot .finger { transform-box: fill-box; transform-origin: bottom center; animation: rbt-curl 2.4s ease-in-out infinite; }
+.robot .finger-b { animation-delay: .12s; }
+.robot .finger-c { animation-delay: .24s; }
+.robot .finger-d { animation-delay: .36s; }
+.robot .thumb   { transform-box: fill-box; transform-origin: bottom left; animation: rbt-thumb 2.4s ease-in-out infinite; }
+@keyframes rbt-curl  { 0%,100% { transform: rotate(0deg) scaleY(1); }     50% { transform: rotate(-9deg) scaleY(.62); } }
+@keyframes rbt-thumb { 0%,100% { transform: rotate(34deg); }              50% { transform: rotate(10deg) scaleY(.85); } }
+.robot.running .finger, .robot.running .thumb { animation-duration: .7s; }
+.robot.halt .finger, .robot.halt .thumb { animation-play-state: paused; }
+
 /* --- blinking eye (roams with the robots; links to the glaucoma paper) --- */
 .robot .eye-blink { transform-box: fill-box; transform-origin: center; animation: rbt-blink 3.6s ease-in-out infinite; }
 @keyframes rbt-blink {
